@@ -1,0 +1,127 @@
+<h1 class="my-3 text-primary">Atualizar Produto</h1>
+
+<div class="card shadow">
+  <form class="m-3">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="name">Produto</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            placeholder="Insira o nome do produto"
+            name="name"
+            [(ngModel)]="product.name"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="image">Imagem</label>
+          <input
+            type="text"
+            class="form-control"
+            id="image"
+            placeholder="Insira a imagem do produto"
+            name="image"
+            [(ngModel)]="product.image"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label for="description">Descrição</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            placeholder="Insira a descrição do produto"
+            name="description"
+            [(ngModel)]="product.description"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="stock">Estoque</label>
+          <input
+            type="number"
+            class="form-control"
+            id="stock"
+            placeholder="0"
+            name="stock"
+            [(ngModel)]="product.stock"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="status">Status</label>
+          <input
+            type="text"
+            class="form-control"
+            id="status"
+            placeholder="Insira o nome do produto"
+            name="status"
+            [(ngModel)]="product.status"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="price">Preço</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price"
+            placeholder="0,00"
+            name="price"
+            [(ngModel)]="product.price"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="category_id">Categoria</label>
+          <input
+            type="text"
+            class="form-control"
+            id="category_id"
+            placeholder="0,00"
+            name="category_id"
+            [(ngModel)]="product.category_id"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-default" routerLink="/products">Voltar</button>
+        <button
+          class="btn btn-warning float-end"
+          (click)="saveProduct()"
+          routerLink="/products"
+        >
+          Salvar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
