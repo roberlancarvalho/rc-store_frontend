@@ -36,7 +36,7 @@ export class ProductsService {
     );
   }
 
-  edit(product: Product): Observable<Product> {
+  updateProduct(product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.URL}/${product.id}`, product).pipe(
       map(back => back),
       catchError(err => this.displayError(err))

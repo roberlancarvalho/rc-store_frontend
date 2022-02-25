@@ -55,7 +55,7 @@ export class UpdateProductsComponent implements OnInit {
   }
 
   saveProduct(): void {
-    this.productsService.edit(this.product).subscribe((back) => {
+    this.productsService.updateProduct(this.product).subscribe((back) => {
       this.product = back;
       this.productsService.showMessage(
         'SISTEMA',

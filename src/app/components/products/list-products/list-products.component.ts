@@ -46,9 +46,9 @@ export class ListProductsComponent implements OnInit {
     console.log('Deletando');
     this.productsService.deleteProduct(product.id!).subscribe(() => {
       this.productsService.showMessage(
-        'SISTEMA',
+        'RC Store',
         `${product.name} foi excluido com sucesso`,
-        'toast-error'
+        'toast-warning'
       );
       this.loadingProductList();
     });
