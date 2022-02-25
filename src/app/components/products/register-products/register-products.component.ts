@@ -1,3 +1,4 @@
+import { Category } from './../../../model/category';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/model/product';
@@ -19,6 +20,11 @@ export class RegisterProductsComponent implements OnInit {
     status: true,
   };
 
+  category_id: Category = {
+    name: '',
+    description: '',
+  }
+
   constructor(
     private productsService: ProductsService,
     private router: Router
@@ -27,8 +33,8 @@ export class RegisterProductsComponent implements OnInit {
   ngOnInit(): void {}
 
   saveProduct(): void {
-    this.productsService.registerProduct(this.product).subscribe(returns => {
-      this.product = returns;
+    this.productsService.registerProduct(this.product).subscribe(back => {
+      this.product = back;
       this.productsService.showMessage(
         'SISTEMA',
         `${this.product.name} foi cadastrado com sucesso. ID: ${this.product.id}`,

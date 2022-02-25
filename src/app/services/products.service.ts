@@ -14,40 +14,39 @@ export class ProductsService {
 
   constructor(private http: HttpClient, private toastr: ToastrService) {}
 
-  listAll(): Observable<Product[]> {
+  findAll(): Observable<Product[]> {
     return this.http.get<Product[]>(this.URL).pipe(
-      map((returns) => returns),
-      catchError((error) => this.displayError(error))
+      map(back => back),
+      catchError(err => this.displayError(err))
     );
   }
 
   findById(id: string): Observable<Product> {
-    console.log("findById " + typeof id)
+    console.log('findById ' + typeof id);
     return this.http.get<Product>(`${this.URL}/${id}`).pipe(
-      map((returns) => returns),
-      catchError((error) => this.displayError(error))
+      map(back => back),
+      catchError(err => this.displayError(err))
     );
   }
 
   registerProduct(product: Product): Observable<Product> {
     return this.http.post<Product>(this.URL, product).pipe(
-      map((returns) => returns),
-      catchError((error) => this.displayError(error))
+      map(back => back),
+      catchError(err => this.displayError(err))
     );
   }
 
-  updateProduct(product: Product): Observable<Product> {
-    console.log("É isso aqui: " + product.id)
+  edit(product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.URL}/${product.id}`, product).pipe(
-      map((returns) => returns),
-      catchError((error) => this.displayError(error))
-      );
+      map(back => back),
+      catchError(err => this.displayError(err))
+    );
   }
 
   deleteProduct(id: string): Observable<any> {
     return this.http.delete<any>(`${this.URL}/${id}`).pipe(
-      map((returns) => returns),
-      catchError((error) => this.displayError(error))
+      map(back => back),
+      catchError(err => this.displayError(err))
     );
   }
 

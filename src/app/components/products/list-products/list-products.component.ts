@@ -1,3 +1,4 @@
+import { Category } from './../../../model/category';
 import { Product } from 'src/app/model/product';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,6 +12,7 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ListProductsComponent implements OnInit {
   listProducts: Product[] = [
     {
+      id: '',
       name: '',
       image: '',
       description: '',
@@ -21,6 +23,13 @@ export class ListProductsComponent implements OnInit {
     },
   ];
 
+  listCategories: Category[] = [
+    {
+      name: '',
+      description: '',
+    },
+  ];
+
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
@@ -28,7 +37,7 @@ export class ListProductsComponent implements OnInit {
   }
 
   loadingProductList(): void {
-    this.productsService.listAll().subscribe((back) => {
+    this.productsService.findAll().subscribe((back) => {
       this.listProducts = back;
     });
   }

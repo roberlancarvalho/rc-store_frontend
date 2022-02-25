@@ -11,7 +11,7 @@
             <tr>
                 <th>Produto</th>
                 <th>Descrição</th>
-                <th>Categoria</th>
+                <!-- <th>Categoria</th> -->
                 <th>Preço</th>
                 <th>Estoque</th>
                 <th>Status</th>
@@ -20,15 +20,16 @@
         </thead>
         <tbody>
             <tr *ngFor="let prod of listProducts">
+
                 <td>{{ prod.name }}</td>
                 <td>{{ prod.description }}</td>
-                <td>{{ prod.category_id }}</td>
+                <!-- <td>{{ prod.category_id }}</td> -->
                 <td>{{ prod.price | currency: "BRL" }}</td>
                 <td>{{ prod.stock }}</td>
                 <td>{{ prod.status }}</td>
 
                 <td>
-                    <button type="button" class="btn btn-warning" routerLink="/products/{{ prod.id }}">
+                    <button type="button" class="btn btn-warning" routerLink="/products/edit/{{ prod.id }}">
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </button>
 

@@ -10,12 +10,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListProductsComponent } from './components/products/list-products/list-products.component';
+import { ProductComponent } from './components/products/product/product.component';
 import { RegisterProductsComponent } from './components/products/register-products/register-products.component';
 import { UpdateProductsComponent } from './components/products/update-products/update-products.component';
 import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './template/footer/footer.component';
 import { HeaderComponent } from './template/header/header.component';
-import { ProductComponent } from './components/products/product/product.component';
 
 @NgModule({
   declarations: [
