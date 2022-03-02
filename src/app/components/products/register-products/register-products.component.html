@@ -17,21 +17,74 @@
         </div>
       </div>
     </div>
-    <div class="row">
+
+    <div class="form-row">
       <div class="col-md-12">
         <div class="form-group">
-          <label for="image">Imagem</label>
+          <label for="name">Categoria</label>
           <input
             type="text"
             class="form-control"
-            id="image"
-            placeholder="Insira a imagem do produto"
-            name="image"
-            [(ngModel)]="product.image"
+            id="category"
+            placeholder="Insira o id de categoria"
+            name="category"
+            [(ngModel)]="product.category_id"
           />
         </div>
       </div>
     </div>
+
+    <div class="form-group" enctype="multipart/form-data">
+      <div class="input-group mb-3 my-4 col-md-6">
+        <input
+          type="file"
+          class="file-input form-control"
+          id="inputGroupFile01"
+          (change)="onFileSelected($event)"
+          #fileUpload
+        />
+        <div class="file-upload">
+          {{ fileName || "Nenhum arquivo carregado ainda." }}
+
+          <button
+            color="primary"
+            class="btn btn-outline-primary btn-sm"
+            (click)="fileUpload.click()"
+          >
+          <i class="fa fa-paperclip" aria-hidden="true"></i>
+            Selecionar imagem
+          </button>
+        </div>
+      </div>
+    </div>
+<!--
+    <div class="form-check form-switch my-4">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        role="switch"
+        id="flexSwitchCheckDefault"
+        name="status"
+        [(ngModel)]="product.status"
+      />
+      <label class="form-check-label" for="flexSwitchCheckDefault"
+        >Produto {{ product.status }}
+      </label>
+    </div> -->
+
+    <!-- <div class="form-group col-md-6">
+      <label for="inputCategory">Categoria</label>
+      <select
+        id="inputCategory"
+        type="text"
+        class="form-select"
+      >
+        <option selected>Selecionar categoria...</option>
+        <option [(ngModel)]="product.category_id" *ngFor="let prod of listProducts">
+          {{ prod.category_id }}
+        </option>
+      </select>
+    </div> -->
 
     <div class="row">
       <div class="col-md-12">
@@ -66,22 +119,6 @@
 
       <div class="col-md-6">
         <div class="form-group">
-          <label for="status">Status</label>
-          <input
-            type="text"
-            class="form-control"
-            id="status"
-            placeholder="Insira o nome do produto"
-            name="status"
-            [(ngModel)]="product.status"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="form-group">
           <label for="price">Preço</label>
           <input
             type="number"
@@ -93,31 +130,23 @@
           />
         </div>
       </div>
-
-      <div class="form-group col-md-6">
-        <label for="inputEstado">Estado</label>
-        <select id="inputEstado" class="form-control">
-          <option selected>Escolher...</option>
-          <option>...</option>
-        </select>
-      </div>
-
-    </div>
-    <div class="form-group my-2">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck" />
-        <label class="form-check-label" for="gridCheck"> Ativo </label>
-      </div>
     </div>
 
+    <br />
     <div class="row">
       <div class="col">
-        <button class="btn btn-default" routerLink="/products">Voltar</button>
+        <button class="btn btn-secondary" routerLink="/products">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          Voltar
+        </button>
         <button
+          type="button"
           class="btn btn-success float-end"
           (click)="saveProduct()"
           routerLink="/products"
+
         >
+          <i class="fa fa-floppy-o" aria-hidden="true"></i>
           Salvar
         </button>
       </div>

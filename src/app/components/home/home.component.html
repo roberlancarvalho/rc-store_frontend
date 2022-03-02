@@ -1,26 +1,17 @@
 <h1>Seja bem vindo(a) à RC Store</h1>
 
-<h4 class="text-danger">Produtos em destaque</h4>
+<h4 class="text-primary">Produtos em destaque</h4>
 
 <div class="row">
-  <div class="col">
-    <app-card-product
-      [image]="image"
-      [name]="name"
-      [description]="description"
-      [category_id]="category_id"
-      [price]="price"
-      [status]="status"
-    ></app-card-product>
-  </div>
-  <div class="col">
-    <app-card-product
-      image="https://fotografiamais.com.br/wp-content/uploads/2018/10/lente-grande-angular-6.jpg"
-      name="product"
-      description="description"
-      category_id="category_id"
-      [price]="2500.0"
-      [status]="false"
-    ></app-card-product>
+  <div class="col" *ngFor="let prod of listProducts">
+      <app-card-product
+      [image]="prod.image"
+      [name]="prod.name"
+      [description]="prod.description"
+      [price]="prod.price"
+      [status]="prod.status"
+      [id]="prod.id"
+      ></app-card-product>
+
   </div>
 </div>

@@ -9,7 +9,7 @@ export class CardProductComponent implements OnInit {
   @Input() image?: string;
   @Input() name?: string;
   @Input() description?: string;
-  @Input() category_id?: string;
+  @Input() category?: string;
   @Input() price?: number;
   @Input() stock?: string;
   @Input() status?: boolean;

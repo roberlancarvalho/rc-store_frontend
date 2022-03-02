@@ -1,3 +1,5 @@
+import { ProductsService } from 'src/app/services/products.service';
+import { Product } from './../../model/product';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,24 +8,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  id: string = '2';
-  name: string = 'Calça jeans';
-  description: string = 'Calça jean masculina';
-  category_id: string = 'Calças';
-  stock: number = 0;
-  price: number = 189.9;
-  status: boolean = false;
-  image: string = 'assets/img/banner.png';
+  listProducts: Array<Product> = [];
 
-  constructor() {
+  id: string = '';
+  name: string = '';
+  description: string = '';
+  stock: number = 0;
+  price: number = 0;
+  status: boolean = true;
+  image: string = '';
+
+  constructor(private productsService: ProductsService) {
     console.log('ID', this.id);
     console.log('Produto', this.name);
     console.log('Descrição', this.description);
-    console.log('Categoria', this.category_id);
     console.log('Estoque', this.stock);
     console.log('Preço', this.price);
     console.log('Status', this.status);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadingProductList();
+  }
+
+  loadingProductList(): void {
+    this.productsService.findAll().subscribe((back) => {
+      this.listProducts = back;
+    });
+  }
 }

@@ -1,16 +1,21 @@
-<div class="card" style="width: 18rem">
-  <img [src]="image" class="card-img-top" alt="..." />
-  <div class="card-body">
-    <h5 class="card-title">
-      {{ name | uppercase }}
-    <span *ngIf="status; else elseBlock" class="badge bg-success">Ativo</span>
-    <ng-template #elseBlock>
-      <span class="badge bg-danger">Inativo</span>
-
-    </ng-template>
-    </h5>
-    <p class="card-text">{{ description }}</p>
-    <p class="card-text">ID: {{ id }}</p>
-    <a href="#" class="btn btn-primary float-end">{{ price | currency: 'BRL' }} </a>
+<div class="card-group">
+  <div class="card" width="10">
+    <img src="..." class="card-img-top" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{ name | uppercase }}</h5>
+      <span class="badge bg-success">Ativo</span>
+      <p class="card-text">{{ description }}</p>
+      <p class="card-text">ID: {{ id }}</p>
+      <p class="card-text">
+        <small class="text-muted"
+          ><a
+            title="Ver {{ name }}"
+            href="/products/product/{{ id }}"
+            class="btn btn-primary float-end"
+            >{{ price | currency: "BRL" }}
+          </a></small
+        >
+      </p>
+    </div>
   </div>
 </div>

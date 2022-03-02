@@ -5,6 +5,7 @@
     routerLink="/products/register"
     class="btn btn-success mt-2 float-end"
   >
+  <i class="fa fa-plus" aria-hidden="true"></i>
     Cadastrar
   </button>
 </h1>
@@ -17,7 +18,6 @@
       <tr>
         <th>Produto</th>
         <th>Descrição</th>
-        <!-- <th>Categoria</th> -->
         <th>Preço</th>
         <th>Estoque</th>
         <th>Status</th>
@@ -28,10 +28,9 @@
       <tr *ngFor="let prod of listProducts">
         <td>{{ prod.name }}</td>
         <td>{{ prod.description }}</td>
-        <!-- <td>{{ prod.category_id }}</td> -->
         <td>{{ prod.price | currency: "BRL" }}</td>
         <td>{{ prod.stock }}</td>
-        <td *ngIf="">{{ prod.status }}</td>
+        <td>{{ prod.status }}</td>
 
         <td>
           <button
@@ -59,7 +58,11 @@
             <i class="fa fa-trash-o" aria-hidden="true"></i>
           </button>
 
-          <button title="Visualizar produto" class="btn btn-success" routerLink="/products/product">
+          <button
+            title="Ver mais detalhes de {{ prod.name }}"
+            class="btn btn-success"
+            routerLink="/products/product/{{ prod.id }}"
+          >
             <i class="fa fa-eye" aria-hidden="true"></i>
           </button>
         </td>

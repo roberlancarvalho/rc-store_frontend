@@ -1,7 +1,8 @@
-import { Category } from './../../../model/category';
+import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/model/product';
+import { Product } from './../../../model/product';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -10,6 +11,12 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./register-products.component.css'],
 })
 export class RegisterProductsComponent implements OnInit {
+  productItem: any;
+
+  listProducts: Array<Product> = [];
+
+  fileName = '';
+
   product: Product = {
     name: '',
     description: '',
@@ -20,20 +27,55 @@ export class RegisterProductsComponent implements OnInit {
     status: true,
   };
 
-  category_id: Category = {
-    name: '',
-    description: '',
-  }
-
   constructor(
     private productsService: ProductsService,
-    private router: Router
+    private router: Router,
+    private _location: Location,
+    private http: HttpClient
   ) {}
 
-  ngOnInit(): void {}
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.fileName = file.name;
+
+      const formData = new FormData();
+
+      formData.append('thumbnail', file);
+
+      const upload$ = this.http.post('http://localhost:3000/uploads', formData);
+
+      upload$.subscribe();
+    }
+  }
+
+  ngOnInit(): void {
+    this.loadingProductList();
+  }
+
+  exemple() {
+    this.listProducts.map((item) => {
+      this.productItem = item;
+    });
+  }
+
+  load() {
+    location.reload();
+  }
+
+  goToBack() {
+    this._location.back();
+  }
+
+  loadingProductList(): void {
+    this.productsService.findAll().subscribe((back) => {
+      this.listProducts = back;
+    });
+  }
 
   saveProduct(): void {
-    this.productsService.registerProduct(this.product).subscribe(back => {
+    this.productsService.registerProduct(this.product).subscribe((back) => {
       this.product = back;
       this.productsService.showMessage(
         'SISTEMA',
@@ -41,6 +83,8 @@ export class RegisterProductsComponent implements OnInit {
         'toast-success'
       );
       this.router.navigate(['/products']);
+      this.loadingProductList();
+      this.load();
     });
   }
 }

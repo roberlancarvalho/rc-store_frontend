@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,6 +11,8 @@ import { ProductsService } from './../../../services/products.service';
   styleUrls: ['./update-products.component.css'],
 })
 export class UpdateProductsComponent implements OnInit {
+  listProducts: Array<Product> = [];
+
   product: Product = {
     name: '',
     description: '',
@@ -20,32 +23,29 @@ export class UpdateProductsComponent implements OnInit {
     status: true,
   };
 
-  listProducts: Product[] = [
-    {
-      id: '',
-      name: '',
-      image: '',
-      description: '',
-      category_id: '',
-      price: 0,
-      stock: 0,
-      status: true,
-    },
-  ];
 
   constructor(
     private productsService: ProductsService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private _location: Location
   ) {}
 
   ngOnInit(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
-    this.productsService.findById(id).subscribe(product => {
+    this.productsService.findById(id).subscribe((product) => {
       this.product = product;
     });
 
     this.loadingProductList();
+  }
+
+  load() {
+    location.reload();
+  }
+
+  goToBack() {
+    this._location.back();
   }
 
   loadingProductList(): void {
@@ -64,6 +64,7 @@ export class UpdateProductsComponent implements OnInit {
       );
       this.router.navigate(['/products']);
       this.loadingProductList();
+      this.load();
     });
   }
 }

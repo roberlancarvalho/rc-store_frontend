@@ -10,25 +10,10 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./list-products.component.css'],
 })
 export class ListProductsComponent implements OnInit {
-  listProducts: Product[] = [
-    {
-      id: '',
-      name: '',
-      image: '',
-      description: '',
-      category_id: '',
-      price: 0,
-      stock: 0,
-      status: true,
-    },
-  ];
 
-  listCategories: Category[] = [
-    {
-      name: '',
-      description: '',
-    },
-  ];
+  productExemple: any;
+
+  listProducts: Array<Product> = [];
 
   constructor(private productsService: ProductsService) {}
 
@@ -36,9 +21,20 @@ export class ListProductsComponent implements OnInit {
     this.loadingProductList();
   }
 
+  exemple() {
+    this.listProducts.map((item) => {
+      this.productExemple = item;
+    });
+  }
+
+  load() {
+    location.reload();
+  }
+
   loadingProductList(): void {
     this.productsService.findAll().subscribe((back) => {
       this.listProducts = back;
+      this.exemple();
     });
   }
 
@@ -51,6 +47,7 @@ export class ListProductsComponent implements OnInit {
         'toast-warning'
       );
       this.loadingProductList();
+      this.load();
     });
   }
 }
