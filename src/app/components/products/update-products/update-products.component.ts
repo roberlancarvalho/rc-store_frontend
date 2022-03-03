@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,12 +12,19 @@ import { ProductsService } from './../../../services/products.service';
   styleUrls: ['./update-products.component.css'],
 })
 export class UpdateProductsComponent implements OnInit {
+  fileName = '';
+
   listProducts: Array<Product> = [];
 
   product: Product = {
     name: '',
     description: '',
     image: '',
+    category: {
+      id: '',
+      name: '',
+      description: '',
+    },
     category_id: '',
     price: 0,
     stock: 0,
@@ -28,8 +36,25 @@ export class UpdateProductsComponent implements OnInit {
     private productsService: ProductsService,
     private router: Router,
     private route: ActivatedRoute,
-    private _location: Location
+    private _location: Location,
+    private http: HttpClient
   ) {}
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.fileName = file.name;
+
+      const formData = new FormData();
+
+      formData.append('thumbnail', file);
+
+      const upload$ = this.http.post('http://localhost:3000/uploads', formData);
+
+      upload$.subscribe();
+    }
+  }
 
   ngOnInit(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));

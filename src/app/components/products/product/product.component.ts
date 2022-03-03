@@ -15,10 +15,15 @@ export class ProductComponent implements OnInit {
     name: '',
     description: '',
     image: '',
+    category: {
+      id: '',
+      name: '',
+      description: '',
+    },
+    category_id: '',
     price: 0,
     stock: 0,
     status: true,
-    category_id: '',
   };
 
   listProducts: Product[] = [];
@@ -29,6 +34,9 @@ export class ProductComponent implements OnInit {
     private route: ActivatedRoute,
     private _location: Location
   ) {}
+
+
+  imageUrl: string = 'uploads/'
 
   goToBack() {
     this._location.back();
@@ -52,8 +60,6 @@ export class ProductComponent implements OnInit {
       this.listProducts = back;
     });
   }
-
-
 
   saveProduct(): void {
     this.productsService.updateProduct(this.product).subscribe((back) => {

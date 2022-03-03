@@ -1,4 +1,3 @@
-import { Category } from './../../../model/category';
 import { Product } from 'src/app/model/product';
 import { Component, OnInit } from '@angular/core';
 

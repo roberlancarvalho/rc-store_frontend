@@ -2,8 +2,9 @@ import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from './../../../model/product';
 import { ProductsService } from 'src/app/services/products.service';
+
+import { Product } from './../../../model/product';
 
 @Component({
   selector: 'app-register-products',
@@ -21,6 +22,11 @@ export class RegisterProductsComponent implements OnInit {
     name: '',
     description: '',
     image: '',
+    category: {
+      id: '',
+      name: '',
+      description: '',
+    },
     category_id: '',
     price: 0,
     stock: 0,
@@ -83,8 +89,8 @@ export class RegisterProductsComponent implements OnInit {
         'toast-success'
       );
       this.router.navigate(['/products']);
-      this.loadingProductList();
       this.load();
+      this.loadingProductList();
     });
   }
 }

@@ -18,10 +18,21 @@
       </div>
     </div>
 
-    <div class="form-row">
+    <!-- <div class="form-row">
       <div class="col-md-12">
         <div class="form-group">
-          <label for="name">Categoria</label>
+          <label for="category">Categoria</label>
+          <select id="category" type="text" class="form-select">
+            <input type="text" name="category" [(ngModel)]="product.category.name">
+            <option selected>Selecionar categoria...</option>
+            <option
+            name="category" *ngFor="let prod of listProducts"
+            >
+            {{ prod.category.name }}
+            </option>
+          </select>
+
+          <label for="category">Categoria</label>
           <input
             type="text"
             class="form-control"
@@ -32,7 +43,7 @@
           />
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="form-group" enctype="multipart/form-data">
       <div class="input-group mb-3 my-4 col-md-6">
@@ -42,6 +53,8 @@
           id="inputGroupFile01"
           (change)="onFileSelected($event)"
           #fileUpload
+          [(ngModel)]="product.image"
+          name="image"
         />
         <div class="file-upload">
           {{ fileName || "Nenhum arquivo carregado ainda." }}
@@ -51,13 +64,13 @@
             class="btn btn-outline-primary btn-sm"
             (click)="fileUpload.click()"
           >
-          <i class="fa fa-paperclip" aria-hidden="true"></i>
+            <i class="fa fa-paperclip" aria-hidden="true"></i>
             Selecionar imagem
           </button>
         </div>
       </div>
     </div>
-<!--
+
     <div class="form-check form-switch my-4">
       <input
         class="form-check-input"
@@ -70,21 +83,7 @@
       <label class="form-check-label" for="flexSwitchCheckDefault"
         >Produto {{ product.status }}
       </label>
-    </div> -->
-
-    <!-- <div class="form-group col-md-6">
-      <label for="inputCategory">Categoria</label>
-      <select
-        id="inputCategory"
-        type="text"
-        class="form-select"
-      >
-        <option selected>Selecionar categoria...</option>
-        <option [(ngModel)]="product.category_id" *ngFor="let prod of listProducts">
-          {{ prod.category_id }}
-        </option>
-      </select>
-    </div> -->
+    </div>
 
     <div class="row">
       <div class="col-md-12">
@@ -144,7 +143,15 @@
           class="btn btn-success float-end"
           (click)="saveProduct()"
           routerLink="/products"
-
+          [disabled]="
+            !fileName ||
+            !product.name ||
+            !product.category ||
+            !product.description ||
+            !product.status ||
+            !product.stock ||
+            !product.price
+          "
         >
           <i class="fa fa-floppy-o" aria-hidden="true"></i>
           Salvar
