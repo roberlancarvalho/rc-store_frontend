@@ -10,25 +10,9 @@
             type="text"
             class="form-control"
             id="name"
+            [(ngModel)]="product.name"
             placeholder="Insira o nome do produto"
             name="name"
-            [(ngModel)]="product.name"
-          />
-        </div>
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="col-md-12">
-        <div class="form-group">
-          <label for="category">Categoria</label>
-          <input
-            type="text"
-            class="form-control"
-            id="category"
-            placeholder="Insira o id de categoria"
-            name="category"
-            [(ngModel)]="product.category_id"
           />
         </div>
       </div>

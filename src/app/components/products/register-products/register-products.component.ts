@@ -22,12 +22,6 @@ export class RegisterProductsComponent implements OnInit {
     name: '',
     description: '',
     image: '',
-    category: {
-      id: '',
-      name: '',
-      description: '',
-    },
-    category_id: '',
     price: 0,
     stock: 0,
     status: true,

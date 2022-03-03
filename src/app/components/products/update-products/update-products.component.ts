@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -20,17 +20,10 @@ export class UpdateProductsComponent implements OnInit {
     name: '',
     description: '',
     image: '',
-    category: {
-      id: '',
-      name: '',
-      description: '',
-    },
-    category_id: '',
     price: 0,
     stock: 0,
     status: true,
   };
-
 
   constructor(
     private productsService: ProductsService,
@@ -57,12 +50,12 @@ export class UpdateProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadingProductList();
+
     const id = String(this.route.snapshot.paramMap.get('id'));
     this.productsService.findById(id).subscribe((product) => {
       this.product = product;
     });
-
-    this.loadingProductList();
   }
 
   load() {
@@ -88,8 +81,8 @@ export class UpdateProductsComponent implements OnInit {
         'toast-success'
       );
       this.router.navigate(['/products']);
-      this.loadingProductList();
       this.load();
+      this.loadingProductList();
     });
   }
 }
